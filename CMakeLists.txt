@@ -77,18 +77,21 @@ IF ( WIN32 )
 ELSE  ( WIN32 )
   ## Unix and OS X...
   IF ( APPLE )
-    SET ( CMAKE_OSX_ARCHITECTURES "x86_64;i386" )
+#    SET ( CMAKE_OSX_ARCHITECTURES "x86_64;i386" )
     FIND_LIBRARY ( COCOA_LIBRARY Cocoa )
     INCLUDE_DIRECTORIES ( macosx )
-    INCLUDE_DIRECTORIES ( /Library/Frameworks/Tk.framework/Versions/8.6/PrivateHeaders )
-    INCLUDE_DIRECTORIES ( /System/Library/Frameworks/Tk.framework/Versions/8.5/Headers/tk-private )
-    INCLUDE_DIRECTORIES ( /System/Library/Frameworks/Tk.framework/Versions/8.5/Headers/tk-private )
+#    INCLUDE_DIRECTORIES ( /Library/Frameworks/Tk.framework/Versions/8.6/PrivateHeaders )
+#    INCLUDE_DIRECTORIES ( /System/Library/Frameworks/Tk.framework/Versions/8.5/Headers/tk-private )
+#    INCLUDE_DIRECTORIES ( /System/Library/Frameworks/Tk.framework/Versions/8.5/Headers/tk-private )
+    INCLUDE_DIRECTORIES ( "${CMAKE_SOURCE_DIR}/mac/tk${TK_VERSION}/generic" )
+    INCLUDE_DIRECTORIES ( "${CMAKE_SOURCE_DIR}/mac/tk${TK_VERSION}/macosx" )
+
     ADD_DEFINITIONS     ( -DMAC_TK_COCOA -DMAC_OSX_TK)
     ADD_DEFINITIONS     ( -DMAC_OSX_TK )
     ADD_DEFINITIONS     ( -std=gnu99 )
     ADD_DEFINITIONS     ( -x objective-c )
-    ADD_DEFINITIONS     ( -fobjc-gc  )
-    ADD_DEFINITIONS     ( -fobjc-arc )
+#    ADD_DEFINITIONS     ( -fobjc-gc  )
+#    ADD_DEFINITIONS     ( -fobjc-arc )
     LINK_LIBRARIES      ( ${COCOA_LIBRARY} )
     LIST ( APPEND PKG_SOURCES macosx/macdnd.m )
   ELSE ( APPLE )
@@ -267,16 +270,16 @@ configure_file(pkgIndex.tcl.in library/pkgIndex.tcl @ONLY)
 ## ===========================================================================
 ##  Declare the package install targets...
 ## ===========================================================================
-INSTALL ( TARGETS ${PKG_TARGET_LIB_NAME}
-          RUNTIME DESTINATION ${PKG_TARGET_LIB_NAME}
-          LIBRARY DESTINATION ${PKG_TARGET_LIB_NAME}
-          ARCHIVE DESTINATION ${PKG_TARGET_LIB_NAME} )
-INSTALL ( FILES ${CMAKE_CURRENT_BINARY_DIR}/library/pkgIndex.tcl
-                library/tkdnd.tcl
-                library/tkdnd_generic.tcl
-                library/tkdnd_compat.tcl
-                library/tkdnd_macosx.tcl
-                library/tkdnd_unix.tcl
-                library/tkdnd_windows.tcl
-                library/tkdnd_utils.tcl
-          DESTINATION ${PKG_TARGET_LIB_NAME} )
+#INSTALL ( TARGETS ${PKG_TARGET_LIB_NAME}
+#          RUNTIME DESTINATION ${PKG_TARGET_LIB_NAME}
+#          LIBRARY DESTINATION ${PKG_TARGET_LIB_NAME}
+#          ARCHIVE DESTINATION ${PKG_TARGET_LIB_NAME} )
+#INSTALL ( FILES ${CMAKE_CURRENT_BINARY_DIR}/library/pkgIndex.tcl
+#                library/tkdnd.tcl
+#                library/tkdnd_generic.tcl
+#                library/tkdnd_compat.tcl
+#                library/tkdnd_macosx.tcl
+#                library/tkdnd_unix.tcl
+#                library/tkdnd_windows.tcl
+#                library/tkdnd_utils.tcl
+#          DESTINATION ${PKG_TARGET_LIB_NAME} )
