@@ -83,6 +83,8 @@ ELSE  ( WIN32 )
 #    INCLUDE_DIRECTORIES ( /Library/Frameworks/Tk.framework/Versions/8.6/PrivateHeaders )
 #    INCLUDE_DIRECTORIES ( /System/Library/Frameworks/Tk.framework/Versions/8.5/Headers/tk-private )
 #    INCLUDE_DIRECTORIES ( /System/Library/Frameworks/Tk.framework/Versions/8.5/Headers/tk-private )
+    INCLUDE_DIRECTORIES ( "${CMAKE_SOURCE_DIR}/mac/tcl${TK_VERSION}/generic" )
+    INCLUDE_DIRECTORIES ( "${CMAKE_SOURCE_DIR}/mac/tcl${TK_VERSION}/macosx" )
     INCLUDE_DIRECTORIES ( "${CMAKE_SOURCE_DIR}/mac/tk${TK_VERSION}/generic" )
     INCLUDE_DIRECTORIES ( "${CMAKE_SOURCE_DIR}/mac/tk${TK_VERSION}/macosx" )
 
